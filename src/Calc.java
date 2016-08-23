@@ -1,32 +1,24 @@
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
-
 /**
  * Created by Admin on 10.08.2016.
  */
+@SuppressWarnings("DefaultFileTemplate")
 public class Calc {
 
-    public int multipleBelowTen(int a, int b) {
-        ArrayList<Integer> zaehler = new ArrayList<>();
-        for(int i = 0; i < 1000; i++) {
-            if((a * i) < 1000) {
-                zaehler.add(a*i);
-            }
+    public int evenFibonacci() {
+        int a = 0;
+        int b = 1;
+        ArrayList<Integer> c = new ArrayList<>();
 
-            if((b * i) < 1000) {
-                zaehler.add(b*i);
+        while((a + b) < 4000000) {
+            if((a + b) % 2 == 0 ) {
+                c.add(a + b);
             }
+            int zwischenergebnis = a;
+            a = b;
+            b = zwischenergebnis + b;
         }
-        //Collections enthält keine Duplicate
-        Set<Integer> deleteDuplicateValue = new HashSet<>();
-        deleteDuplicateValue.addAll(zaehler);
-        //ArrayList des Zaehlers ist nun leer und Ergebnisliste ohne duplikate wird
-        //hinzugefügt
-        zaehler.clear();
-        zaehler.addAll(deleteDuplicateValue);
-
-        return zaehler.stream().mapToInt(Integer::intValue).sum();
+        return c.stream().mapToInt(Integer::intValue).sum();
     }
 
 }
